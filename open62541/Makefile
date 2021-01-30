@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=open62541
 PKG_VERSION:=1.0.6
-PKG_RELEASE=1
+PKG_RELEASE:=1
 PKG_LICENSE:=MPL-2.0
 
 PKG_SOURCE_PROTO:=git
@@ -32,15 +32,6 @@ endef
 CMAKE_SOURCE_DIR=$(PKG_BUILD_DIR)
 CMAKE_OPTIONS+= -DBUILD_SHARED_LIBS=ON \
 	-DCMAKE_BUILD_TYPE=MinSizeRel
-
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include/
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopen62541.so* $(1)/usr/lib/
-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/open62541.pc $(1)/usr/lib/pkgconfig/
-endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib
