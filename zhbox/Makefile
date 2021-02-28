@@ -1,14 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zhbox
-PKG_VERSION:=0.0.2
+PKG_VERSION:=0.0.3
 PKG_RELEASE=1
 PKG_LICENSE:=MIT
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/humble-zh/zhbox.git
-PKG_MIRROR_HASH:=9c26c920434fe06f99f2ecae569959be5c078b127213060bceeca729f5dec45a
-PKG_SOURCE_VERSION:=989b4e9273dc977c2cec3a1ab39476e3b73d349d
+PKG_MIRROR_HASH:=437a20005cc8bbcb74656993790550cd665dfed53ab257858e5e63d7a002984c
+PKG_SOURCE_VERSION:=c857b9a174942330f4baaf06992df70421953998
 
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
@@ -20,9 +20,9 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=zhbox just syslog a string helloworld
+  TITLE:=an iot-edge program connected to the cloud with MQTT
   URL:=
-  DEPENDS:=+libconfig +libevent2-core +libmosquitto-ssl
+  DEPENDS:=+libconfig +libevent2-core +libmosquitto-ssl +open62541 +openssl-util
 endef
 
 define Package/$(PKG_NAME)/description
