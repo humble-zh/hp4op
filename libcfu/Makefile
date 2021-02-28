@@ -29,6 +29,14 @@ define Package/$(PKG_NAME)/description
 Libcfu is a library of tools that I have found useful, particularly when developing multithreaded software. It currently includes a hash table, a linked list, self-extending strings, a configuration file parser, a simple timer, and a thread queue.
 endef
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include/
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/cfu/ $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc $(1)/usr/lib/pkgconfig/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcfu.so* $(1)/usr/lib/
+endef
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libcfu.so* $(1)/usr/lib/
