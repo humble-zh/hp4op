@@ -33,6 +33,14 @@ CMAKE_SOURCE_DIR=$(PKG_BUILD_DIR)
 CMAKE_OPTIONS+= -DBUILD_SHARED_LIBS=ON \
 	-DCMAKE_BUILD_TYPE=MinSizeRel
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include/
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/open62541/ $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/*.pc $(1)/usr/lib/pkgconfig/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopen62541.so* $(1)/usr/lib/
+endef
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libopen62541.so* $(1)/usr/lib/
